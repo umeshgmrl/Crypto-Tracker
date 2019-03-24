@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
 
 class CoinList extends Component {
   state = {
@@ -34,10 +33,15 @@ class CoinList extends Component {
   };
 
   changePerPage = event => {
-    //ok
+    let perPage = event.target.value;
+    let { page } = this.state;
+    if (perPage * this.state.page > 100) {
+      page = 1;
+    }
     this.setState(
       {
-        perPage: event.target.value
+        perPage,
+        page
       },
       () => {
         this.fetchCurrencies();
@@ -46,29 +50,42 @@ class CoinList extends Component {
   };
 
   gotoCoin = id => {
-    console.log(this.props);
     this.props.history.push(`/coin/${id}`);
   };
 
-  fetchCurrencies = () => {
+  startLoading = () => {
     this.props.handleLoading(true);
-    const { page, perPage } = this.state;
+    this.setState({
+      loading: true
+    });
+  };
 
+  stopLoading = () => {
+    this.props.handleLoading(false);
+    this.setState({
+      loading: false
+    });
+  };
+
+  fetchCurrencies = () => {
+    this.startLoading();
+    const { page, perPage } = this.state;
     fetch(
       `https://api.udilia.com/coins/v1/cryptocurrencies?page=${page}&perPage=${perPage}`
     )
       .then(rawData => rawData.json())
       .then(data => {
         this.setState(data);
-        this.props.handleLoading(false);
+        this.stopLoading();
       });
   };
   componentDidMount() {
     this.fetchCurrencies();
   }
+
   render() {
     const { currencies, page, totalPages, loading } = this.state;
-    if (!currencies) return null;
+    if (!currencies || loading) return null;
     return (
       <div>
         <div>
@@ -107,7 +124,7 @@ class CoinList extends Component {
               <span>{`Page ${page} of ${totalPages}`}</span>
               <button
                 className="button"
-                disabled={page > 4}
+                disabled={page >= totalPages}
                 onClick={this.incrementPage}
               >
                 →

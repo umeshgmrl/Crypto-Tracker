@@ -91,33 +91,35 @@ class CoinList extends Component {
       <div>
         <div>
           <main>
-            <table className="table is-bordered is-fullwidth is-hoverable">
-              <thead>
-                <tr>
-                  <td>Cryptocurrency</td>
-                  <td>Price</td>
-                  <td>Market Cap</td>
-                  <td>24H Change</td>
-                </tr>
-              </thead>
-
-              <tbody>
-                {currencies.map((currency, id) => (
-                  <tr key={id} onClick={() => this.gotoCoin(currency.id)}>
-                    <td>{currency.name}</td>
-                    <td>
-                      <span className="dollor-sign">$ </span>
-                      {currency.price}
-                    </td>
-                    <td>
-                      <span className="dollor-sign">$ </span>
-                      {currency.marketCap}
-                    </td>
-                    <td>{renderPercentCell(currency.percentChange24h)}</td>
+            <div className="table-wrapper">
+              <table className="table is-bordered is-fullwidth is-hoverable">
+                <thead>
+                  <tr>
+                    <td>Cryptocurrency</td>
+                    <td>Price</td>
+                    <td>Market Cap</td>
+                    <td>24H Change</td>
                   </tr>
-                ))}
-              </tbody>
-            </table>
+                </thead>
+
+                <tbody>
+                  {currencies.map((currency, id) => (
+                    <tr key={id} onClick={() => this.gotoCoin(currency.id)}>
+                      <td>{currency.name}</td>
+                      <td>
+                        <span className="dollor-sign">$ </span>
+                        {currency.price}
+                      </td>
+                      <td>
+                        <span className="dollor-sign">$ </span>
+                        {currency.marketCap}
+                      </td>
+                      <td>{renderPercentCell(currency.percentChange24h)}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
           </main>
           <footer>
             <div className="pagination">

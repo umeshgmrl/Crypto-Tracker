@@ -229,3 +229,39 @@ header img {
 		transform: rotate(360deg);
 	}
 }
+
+@media screen and (max-width: 500px) {
+	header {
+		flex-direction: column;
+	}
+	.field {
+		margin-top: 15px;
+	}
+	table {
+		table-layout: fixed;
+		width: 170% !important;
+	}
+	td {
+		white-space: nowrap;
+		padding: 0px 5px;
+	}
+	main {
+		padding: 10px;
+	}
+	.table-wrapper {
+		overflow-x: scroll;
+	}
+	footer {
+		flex-direction: column;
+	}
+	.per-page {
+		margin-top: 20px;
+	}
+	.coin-details-page {
+		margin: 0px 10px;
+		padding-bottom: 30px;
+	}
+	.coin-rows-wrapper {
+		overflow-x: scroll;
+	}
+}

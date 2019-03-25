@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { renderPercentCell } from "./shared";
 
 class CoinList extends Component {
   state = {
@@ -104,9 +105,15 @@ class CoinList extends Component {
                 {currencies.map((currency, id) => (
                   <tr key={id} onClick={() => this.gotoCoin(currency.id)}>
                     <td>{currency.name}</td>
-                    <td>{currency.price}</td>
-                    <td>{currency.marketCap}</td>
-                    <td>{currency.percentChange24h}</td>
+                    <td>
+                      <span className="dollor-sign">$ </span>
+                      {currency.price}
+                    </td>
+                    <td>
+                      <span className="dollor-sign">$ </span>
+                      {currency.marketCap}
+                    </td>
+                    <td>{renderPercentCell(currency.percentChange24h)}</td>
                   </tr>
                 ))}
               </tbody>

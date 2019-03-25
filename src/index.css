@@ -204,3 +204,28 @@ footer {
 	text-align: center;
 }
 
+.percent-down {
+	color: red;
+}
+
+.percent-up {
+	color: #00d1b2;
+}
+
+.dollor-sign {
+	color: #ba93d3;
+}
+
+header img {
+	animation: App-logo-spin infinite 20s linear;
+	height: 68px;
+}
+
+@keyframes App-logo-spin {
+	from {
+		transform: rotate(0deg);
+	}
+	to {
+		transform: rotate(360deg);
+	}
+}

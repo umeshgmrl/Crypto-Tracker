@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
+import { renderPercentCell } from "./shared";
 
 class CoinDetails extends Component {
 	state = {};
@@ -80,7 +81,10 @@ class CoinDetails extends Component {
 						</div>
 						<div className="coin-detail-row">
 							<div>Price</div>
-							<div>{price}</div>
+							<div>
+								<span className="dollor-sign">$ </span>
+								{price}
+							</div>
 						</div>
 						<div className="coin-detail-row">
 							<div>Symbol</div>
@@ -88,19 +92,28 @@ class CoinDetails extends Component {
 						</div>
 						<div className="coin-detail-row">
 							<div>Market Cap</div>
-							<div>{marketCap}</div>
+							<div>
+								<span className="dollor-sign">$ </span>
+								{marketCap}
+							</div>
 						</div>
 						<div className="coin-detail-row">
 							<div>24H percentage change</div>
-							<div>{percentChange24h}</div>
+							<div>{renderPercentCell(percentChange24h)}</div>
 						</div>
 						<div className="coin-detail-row">
 							<div>Total Supply</div>
-							<div>{totalSupply}</div>
+							<div>
+								<span className="dollor-sign">$ </span>
+								{totalSupply}
+							</div>
 						</div>
 						<div className="coin-detail-row">
 							<div>24H Volume</div>
-							<div>{volume24h}</div>
+							<div>
+								<span className="dollor-sign">$ </span>
+								{volume24h}
+							</div>
 						</div>
 					</div>
 				</div>
